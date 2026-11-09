@@ -1,0 +1,9 @@
+Package: com.yue.com
+Name: yue
+Depends: mobilesubstrate
+Version: 1.0
+Architecture: iphoneos-arm
+Description: yue x mona
+Maintainer: yue x mona
+Author: yue x mona
+Section: jk
