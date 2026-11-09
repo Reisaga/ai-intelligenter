@@ -1,0 +1,30 @@
+
+workflows:
+  zcming-ios-build:
+    name: ZCMING Theos Build
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    scripts:
+      - name: Install dependencies and Theos
+        script: |
+          brew install ldid
+          git clone --recursive https://github.com/theos/theos.git "$HOME/theos"
+
+      - name: Build ZCMING
+        script: |
+          export THEOS="$HOME/theos"
+          export PATH="$THEOS/bin:$PATH"
+
+          cd ZCMING/I9zecis-main
+
+          make clean
+          make package
+
+      - name: Verify package
+        script: |
+          ls -lah ZCMING/I9zecis-main/packages/
+
+    artifacts:
+      - ZCMING/I9zecis-main/packages/*.deb
+      - ZCMING/I9zecis-main/packages/*.ipa
